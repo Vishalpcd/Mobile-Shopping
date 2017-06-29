@@ -1,0 +1,5 @@
+Erorrs at firts time: After changing the version of web app to 2.3 to 3.1 there the context of this application gets creted one more time in the server.xml in server.
+Error result: the server was not starting it was showing that the MobileShopping application has one duplicate context.
+Error Solution:In server->server.xml file after scrolling at last there are all context of all projects  are included and there were two same context statement of my project was there after removing one of them and trying again to the servlet server get started.
+Error at Second time:After running one more time the server gets stop after starting and this time error message was there.
+Solution:Right click on  the server in view tab->clean the project and then started the server now it get started. 
