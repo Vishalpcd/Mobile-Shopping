@@ -1,5 +1,18 @@
 Erorrs at firts time: After changing the version of web app to 2.3 to 3.1 the context of this application gets created one more time in the server.xml in server.
 Error result: the server was not starting it was showing that the MobileShopping application has one duplicate context.
-Error Solution:In server->server.xml file after scrolling at last there are all context of all projects  are included and there were two same context statement of my project was there after removing one of them and trying again to start the server and then after it server get started.
-Error at Second time:After running one more time the server gets stop after starting and this time simple  error message was there.
-Solution:Right click on  the server in view tab->cleaned the server and then started the server and then it get started. 
+Error Solution:In server->server.xml file after scrolling at last there are all context of all projects  are included 
+and there were two same context statement of my project was there
+after removing one of them and trying again to start the server and then after it server get started.
+Error at Second time:After running one more time the server gets stopped after starting and this
+time simple  error message was there.
+Solution:Right click on  the server in the view tab->cleaned the server and then started the 
+server and then it get started. 
+@RequestParam: After adding simple RequstParam Annotation with some value then it will only open 
+if user passes any value in the url box if he doesn't passes any value then it will show you an 
+error 404 error
+Solution:to avoid this add the required=false then it will not show any error 
+it will print nothing with blank page 
+@PathVariable:To take any value by using forward slash then the value, for this we have to use
+@PathVariable and and then but the issue is there in the @pathVariable that if we don't
+pass any value then it will print 404 error. The project will be updated in later updates. 
+that if we do not pass any value then also it has to call the page.jsp page.  
