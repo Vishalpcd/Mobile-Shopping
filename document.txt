@@ -25,3 +25,5 @@ that if we do not pass any value then also it has to call the page.jsp page.
 <mvc:resources/>:Is used for defining the location of all the resources in the project.
 Added our brand image in the project.
 Added all required bootstrap files 
+
+Added navigation bar with more list.

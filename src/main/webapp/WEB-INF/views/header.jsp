@@ -31,8 +31,42 @@
 <div class="container-fluid">
 <nav class="navbar navbar-inverse navbar-fixed-top">
 <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tog" aria-expanded="false">
+<span class="sr-only">toggle navigation</span>
+<span class="sr-only"></span>
+<span class="sr-only"></span>
+<span class="sr-only"></span>
+<span class="sr-only"></span>
+<span class="sr-only"></span>
+</button>
 <a class="navbar-brand" href="/"><img alt="Mobile Shopping" src="/webapp/assets/images/title.jpg">
 </a>
+</div>
+<div class="collapse navbar-collapse" id="tog">
+<ul class="nav navbar-nav">
+<li><a href="/MobileShopping/home"><span class="glyphicon glyphicon-home"></span></a></li>
+<li class="dropdown">
+<a href= "#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">Samsung</a></li>
+<li><a href="#">Nokia</a></li>
+<li><a href="#">One Plus One</a></li>
+</ul>
+</li>
+<li class="dropdown">
+<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a href="#">Smart Phones</a></li>
+<li><a href="#">Featured Phones</a></li>
+</ul>
+</li>
+<li><a href="#">About us</a></li>
+<li><a href="#">Login</a></li>
+<li><a href="#">Sign-up</a></li>
+</ul>
+</div>
+<div>
+
 </div> 
 </nav>
 </div>
