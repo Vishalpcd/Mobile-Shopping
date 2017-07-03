@@ -8,14 +8,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
-	@RequestMapping(value={"/","/home","/index"})//provides url pattern for specific page as given below
+	@RequestMapping(value={"/home"})//provides url pattern for specific page as given below
 
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{
-		ModelAndView mv=new ModelAndView("page");//it will serach page as a name of the web page
+		ModelAndView mv=new ModelAndView("home");//it will serach page as a name of the web page
 		mv.addObject("message","This is the online shopping website for mobiles ");//message is attrbute name with value 
 		return mv;
 	}
+	
 	/*@RequestMapping(value={"/test/{message}"})//adding another pattern for opening the page.jsp page with message as variable so that it can called by /value instead of ?
 	public ModelAndView test(@PathVariable(value="message",required=false)String message)//PathVariable is used for giving value at the run time and user can provide any value using url saperating url with / this marks and then providing any value in the url 
 	{//required=false given for indentifying the server that the value is not mendatory to specify for opening the page

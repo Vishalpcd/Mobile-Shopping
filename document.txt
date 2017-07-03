@@ -16,3 +16,12 @@ it will print nothing with blank page
 @PathVariable and and then but the issue is there in the @pathVariable that if we don't
 pass any value then it will print 404 error. The project will be updated in later updates. 
 that if we do not pass any value then also it has to call the page.jsp page.  
+
+
+<mvc:annotation-driven/>: Tag specifies that the below code all the mapping will driven through various annotations.
+<%@taglib%> is the spring tag library
+<%@spring var="var_name" value="path"%>:Is used for creating variable for some specific path so that whenever we want to use any path we can use the variable name instead of of whole path
+<%@include file="header.jsp"%>:Is used for merging any code which is kept in other file instead of writing any of that code.
+<mvc:resources/>:Is used for defining the location of all the resources in the project.
+Added our brand image in the project.
+Added all required bootstrap files 
