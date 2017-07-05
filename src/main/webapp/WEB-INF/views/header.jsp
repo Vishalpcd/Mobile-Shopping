@@ -17,12 +17,16 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- Bootstrap library -->
 <link rel="stylesheet" href="${css}/bootstrap.min.css">
+<!-- Darkly theme -->
+<link rel="stylesheet" href="${css}/Darkly.css">
 
 <!-- jQuery library -->
 <script src="${js}/JQuery.js"></script>
 
 <!-- Latest compiled JavaScript -->
 <script src="${js}/bootstrap.min.js"></script>
+<!-- Custom java script file  -->
+<script src="${js}/myApp.js"></script>
 
 
 
@@ -39,12 +43,12 @@
 <span class="sr-only"></span>
 <span class="sr-only"></span>
 </button>
-<a class="navbar-brand" href="/"><img alt="Mobile Shopping" src="/webapp/assets/images/title.jpg">
+<a class="navbar-brand" id="brand" href="/MobileShopping/home"><img alt="Mobile Shopping" src="${images}/title.jpg" heght="30" width="30">
 </a>
 </div>
 <div class="collapse navbar-collapse" id="tog">
 <ul class="nav navbar-nav">
-<li><a href="/MobileShopping/home"><span class="glyphicon glyphicon-home"></span></a></li>
+<li id="home"><a href="/MobileShopping/home"><span class="glyphicon glyphicon-home"></span></a></li>
 <li class="dropdown">
 <a href= "#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
 <ul class="dropdown-menu">
@@ -60,9 +64,9 @@
 <li><a href="#">Featured Phones</a></li>
 </ul>
 </li>
-<li><a href="#">About us</a></li>
-<li><a href="#">Login</a></li>
-<li><a href="#">Sign-up</a></li>
+<li id="about"><a href="/MobileShopping/about">About us</a></li>
+<li id="login"><a href="/MobileShopping/login">Login</a></li>
+<li id="signup"><a href="/MobileShopping/signup">Sign-up</a></li>
 </ul>
 </div>
 <div>
@@ -70,6 +74,5 @@
 </div> 
 </nav>
 </div>
-
 </body>
 </html>
