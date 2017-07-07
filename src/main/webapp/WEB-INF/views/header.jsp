@@ -27,9 +27,6 @@
 <script src="${js}/bootstrap.min.js"></script>
 <!-- Custom java script file  -->
 <script src="${js}/myApp.js"></script>
-
-
-
 </head>
 <body>
 <div class="container-fluid">
@@ -64,14 +61,11 @@
 <li><a href="#">Featured Phones</a></li>
 </ul>
 </li>
-<li id="about"><a href="/MobileShopping/about">About us</a></li>
-<li id="login"><a href="/MobileShopping/login">Login</a></li>
-<li id="signup"><a href="/MobileShopping/signup">Sign-up</a></li>
-</ul>
-</div>
-<div>
+<li class="dropdown">
+<%@include file="CategoryNavbar.jsp"%>
+</li>
 
-</div> 
+</div>
 </nav>
 </div>
 </body>

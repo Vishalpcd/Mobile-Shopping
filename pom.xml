@@ -12,7 +12,12 @@
 		<spring.version>4.3.6.RELEASE</spring.version>
 	</properties>
 	<dependencies>
-
+	<!-- Linking backend project -->
+	<dependency>
+	 	<groupId>com.niit</groupId>
+     	<artifactId>MobileShoppingBackend</artifactId>
+     	<version>0.0.1-SNAPSHOT</version>
+	</dependency>
 		<!-- java ee api -->
 		<dependency>
 			<groupId>javax</groupId>

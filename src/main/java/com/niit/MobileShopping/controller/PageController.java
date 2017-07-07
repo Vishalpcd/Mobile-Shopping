@@ -1,20 +1,25 @@
 package com.niit.MobileShopping.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.MobileShoppingBackend.DAO.CatDao;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
-	@RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
-
+@Autowired//autowiring CatDao interface
+private CatDao catDao;//making object of CatDao as catDao
+@RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{
 		ModelAndView mv=new ModelAndView("home");//it will serach page as a name of the web page
 		mv.addObject("title","home");//message is attrbute name with value
 		mv.addObject("userClicksHome",true);
+		
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
 		return mv;
 	}
 	@RequestMapping(value={"/about"})//provides url pattern for specific page as given below
