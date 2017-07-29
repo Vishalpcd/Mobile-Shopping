@@ -2,10 +2,12 @@ package com.niit.MobileShopping.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.MobileShoppingBackend.DAO.CatDao;
+import com.niit.MobileShoppingBackend.DTO.Category;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
@@ -14,8 +16,8 @@ private CatDao catDao;//making object of CatDao as catDao
 @RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{
-		ModelAndView mv=new ModelAndView("home");//it will serach page as a name of the web page
-		mv.addObject("title","home");//message is attrbute name with value
+		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
+		mv.addObject("title","home");//message is attribute name with value
 		mv.addObject("userClicksHome",true);
 		
 		//passing list of categories
@@ -26,8 +28,8 @@ private CatDao catDao;//making object of CatDao as catDao
 
 	public ModelAndView aboutPage()//this holds Model and View i.e returns model and view in combined manner 
 	{
-		ModelAndView mv=new ModelAndView("about");//it will serach page as a name of the web page
-		mv.addObject("title","about");//message is attrbute name with value
+		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
+		mv.addObject("title","about");//message is attribute name with value
 		mv.addObject("userClicksAbout",true);
 		return mv;
 	}
@@ -36,8 +38,8 @@ private CatDao catDao;//making object of CatDao as catDao
 
 	public ModelAndView loginPage()//this holds Model and View i.e returns model and view in combined manner 
 	{
-		ModelAndView mv=new ModelAndView("login");//it will serach page as a name of the web page
-		mv.addObject("title","login");//message is attrbute name with value
+		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
+		mv.addObject("title","login");//message is attribute name with value
 		mv.addObject("userClicksLogin",true);
 		return mv;
 	}
@@ -45,13 +47,41 @@ private CatDao catDao;//making object of CatDao as catDao
 
 	public ModelAndView signupPage()//this holds Model and View i.e returns model and view in combined manner 
 	{
-		ModelAndView mv=new ModelAndView("signup");//it will serach page as a name of the web page
-		mv.addObject("title","signup");//message is attrbute name with value
+		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
+		mv.addObject("title","signup");//message is attribute name with value
 		mv.addObject("userClicksSignup",true);
 		return mv;
 	}
-	
+	/*
+	 * Mapping for the show all products and category
+	 * 
+	 * */
+	@RequestMapping(value={"/show/all/products"})//provides url pattern for specific page as given below
+	public ModelAndView ShowAllProducts()//this holds Model and View i.e returns model and view in combined manner 
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
+		mv.addObject("title","allProducts");//message is attribute name with value
+		mv.addObject("userClicksallProducts",true);
+		
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		return mv;
+	}
+	/*
+	 * Mapping the products by category id 
+	 * */
 
+	@RequestMapping(value={"/show/category/{id}/products"})
+	public ModelAndView ShowCategoryProducts(@PathVariable("id") int id){
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		//to fetch the categogry id to give the title name 
+		Category category=null;
+		category=catDao.get(id);
+		mv.addObject("title",category.getName());
+		mv.addObject("category",category);//it will fetch category object
+		mv.addObject("userClickscategoryProducts",true);
+		return mv;
+	}
 	
 
 

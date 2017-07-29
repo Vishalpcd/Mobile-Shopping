@@ -27,3 +27,5 @@ Added our brand image in the project.
 Added all required bootstrap files 
 
 Added navigation bar with more list.
+Added Category name to navigation bar in the categories and added listProducts.jsp for showing the list of the products.
+Added Body padding of 65px using css. 
