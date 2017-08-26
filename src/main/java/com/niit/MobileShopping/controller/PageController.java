@@ -7,12 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.MobileShoppingBackend.DAO.CatDao;
+import com.niit.MobileShoppingBackend.DAO.ProductDAO;
 import com.niit.MobileShoppingBackend.DTO.Category;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
-@Autowired//autowiring CatDao interface
-private CatDao catDao;//making object of CatDao as catDao
+	@Autowired//autowiring CatDao interface
+	private CatDao catDao;//making object of CatDao as catDao
+	private ProductDAO productDao;
 @RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{

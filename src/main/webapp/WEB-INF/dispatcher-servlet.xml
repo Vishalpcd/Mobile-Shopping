@@ -14,7 +14,9 @@
 	<!-- To scan the controller class from the package as the given below -->
 	<context:component-scan base-package="com.niit.MobileShopping.controller" />
 	<!-- before adding this package frontend project cannot find the package of backend thats why it is showing the exception -->
-	<context:component-scan base-package="com.niit.MobileShoppingBackend.DAOImpl" />
+	<context:component-scan base-package="com.niit.MobileShoppingBackend" />
+		
+	
 	<!-- configurng internal viewresolver i.e technology used for scanning the view that is pages  -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

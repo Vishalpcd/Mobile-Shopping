@@ -29,3 +29,28 @@ Added all required bootstrap files
 Added navigation bar with more list.
 Added Category name to navigation bar in the categories and added listProducts.jsp for showing the list of the products.
 Added Body padding of 65px using css. 
+
+
+@Entity:
+=========
+This is the annotation which is used to  tell the java that you have to make this class data as data base data.
+This annotation is used just above the class name 
+
+
+@Id:
+======
+If we want to make any column name as a primary key for that table  then we need to Annotate to getter method of the variable name with @Id annotation 
+NOTE:
+=======
+Keep in mind that we need to give Id annotation to the getter method only if you don't do that then it will not run act as primary key.
+
+IDENTITY:
+=========
+ Indicates that the persistence provider must assign primary keys for the entity using database identity column.
+
+
+
+sessionFactory.getCurrentSession():
+=================================
+It will return the current  session .
+By using this we don't need to flush the task it autometically do it for us. 
