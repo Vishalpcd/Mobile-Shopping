@@ -56,12 +56,7 @@
 <ul class="nav navbar-nav">
 <li id="home"><a href="${contextRoot}/home"><span class="glyphicon glyphicon-home"></span></a></li>
 <li class="dropdown">
-<a href= "#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Brands<span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="#">Samsung</a></li>
-<li><a href="#">Nokia</a></li>
-<li><a href="#">One Plus One</a></li>
-</ul>
+<%@include file="BrandNavbar.jsp" %>
 </li>
 <li class="dropdown">
 <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types<span class="caret"></span></a>

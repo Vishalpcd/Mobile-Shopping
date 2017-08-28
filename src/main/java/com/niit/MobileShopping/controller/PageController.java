@@ -1,5 +1,7 @@
 package com.niit.MobileShopping.controller;
 
+import java.io.PrintWriter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,11 +11,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.MobileShoppingBackend.DAO.CatDao;
 import com.niit.MobileShoppingBackend.DAO.ProductDAO;
 import com.niit.MobileShoppingBackend.DTO.Category;
+import com.niit.MobileShoppingBackend.DTO.Product;
+import com.sun.mail.iap.Response;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
 	@Autowired//autowiring CatDao interface
 	private CatDao catDao;//making object of CatDao as catDao
+	@Autowired
 	private ProductDAO productDao;
 @RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
@@ -22,6 +27,8 @@ public class PageController {
 		mv.addObject("title","home");//message is attribute name with value
 		mv.addObject("userClicksHome",true);
 		
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
 		//passing list of categories
 		mv.addObject("Categories",catDao.list());
 		return mv;
@@ -52,7 +59,10 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","signup");//message is attribute name with value
 		mv.addObject("userClicksSignup",true);
+		
+		
 		return mv;
+		
 	}
 	/*
 	 * Mapping for the show all products and category
@@ -65,8 +75,8 @@ public class PageController {
 		mv.addObject("title","allProducts");//message is attribute name with value
 		mv.addObject("userClicksallProducts",true);
 		
-		//passing list of categories
-		mv.addObject("Categories",catDao.list());
+		
+		
 		return mv;
 	}
 	/*
@@ -82,6 +92,17 @@ public class PageController {
 		mv.addObject("title",category.getName());
 		mv.addObject("category",category);//it will fetch category object
 		mv.addObject("userClickscategoryProducts",true);
+		return mv;
+	}
+	@RequestMapping(value={"/show/brand/{id}/products"})
+	public ModelAndView ShowBrandProducts(@PathVariable("id") int id)
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		Product product=null;
+		product=productDao.get(id);
+		mv.addObject("title",product.getBrand());
+		mv.addObject("product", product);
+		mv.addObject("userClicksbrandProducts", true);
 		return mv;
 	}
 	

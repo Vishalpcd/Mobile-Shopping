@@ -1,5 +1,5 @@
 
-<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cotegories<span class="caret"></span></a>
+<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
 <ul class="dropdown-menu">
 <c:forEach items="${Categories}" var="category">
 <li><a href="${contextRoot}/show/category/${category.id}/products">${category.name}</a></li>

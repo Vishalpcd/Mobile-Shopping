@@ -36,6 +36,7 @@ window.menu="${title}";
 </c:if>
 <c:if test="${userClicksallProducts==true or userClickscategoryProducts==true}">
 <%@include file="listProducts.jsp" %>
+
 </c:if>
 </body>
 </html>
