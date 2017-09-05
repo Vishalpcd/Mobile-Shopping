@@ -19,6 +19,10 @@ $(function() {
 		break;
 		
 	}
+	
+	
+	
+	
 
 	var products=[
 					['1','vishal','pathak'],
@@ -40,6 +44,10 @@ $(function() {
 			
 			//console.log('inside the table');
 		}
+
+
+
 	
 	
 });
+

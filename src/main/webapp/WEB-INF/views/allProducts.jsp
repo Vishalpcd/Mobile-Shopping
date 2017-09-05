@@ -5,7 +5,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-<table id="productListTable" class="table">
+<table id="productListTable" class="table table-striped table-bordered table-hover">
 <thead>
 <tr>
 <th>id</th>
