@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.MobileShoppingBackend.DAO.BrandDAO;
 import com.niit.MobileShoppingBackend.DAO.CatDao;
 import com.niit.MobileShoppingBackend.DAO.ProductDAO;
+import com.niit.MobileShoppingBackend.DAO.TypeDAO;
+import com.niit.MobileShoppingBackend.DTO.Brand;
 import com.niit.MobileShoppingBackend.DTO.Category;
 import com.niit.MobileShoppingBackend.DTO.Product;
+import com.niit.MobileShoppingBackend.DTO.Type;
 import com.sun.mail.iap.Response;
 
 @Controller//it specifies that this class is a Controller for this project 
@@ -20,6 +24,10 @@ public class PageController {
 	private CatDao catDao;//making object of CatDao as catDao
 	@Autowired
 	private ProductDAO productDao;
+	@Autowired
+	private BrandDAO brandDao;
+	@Autowired
+	private TypeDAO typeDao;
 @RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{
@@ -31,6 +39,10 @@ public class PageController {
 		mv.addObject("Products",productDao.list());
 		//passing list of categories
 		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
 	@RequestMapping(value={"/about"})//provides url pattern for specific page as given below
@@ -40,6 +52,15 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","about");//message is attribute name with value
 		mv.addObject("userClicksAbout",true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
+				
 		return mv;
 	}
 	
@@ -50,6 +71,14 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","login");//message is attribute name with value
 		mv.addObject("userClicksLogin",true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
 	@RequestMapping(value={"/signup"})//provides url pattern for specific page as given below
@@ -59,8 +88,14 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","signup");//message is attribute name with value
 		mv.addObject("userClicksSignup",true);
-		
-		
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());	
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 		
 	}
@@ -74,9 +109,14 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","allProducts");//message is attribute name with value
 		mv.addObject("userClicksallProducts",true);
-		
-		
-		
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
 	/*
@@ -92,17 +132,52 @@ public class PageController {
 		mv.addObject("title",category.getName());
 		mv.addObject("category",category);//it will fetch category object
 		mv.addObject("userClickscategoryProducts",true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
 	@RequestMapping(value={"/show/brand/{id}/products"})
 	public ModelAndView ShowBrandProducts(@PathVariable("id") int id)
 	{
 		ModelAndView mv=new ModelAndView("DefaultPage");
-		Product product=null;
-		product=productDao.get(id);
-		mv.addObject("title",product.getBrand());
-		mv.addObject("product", product);
-		mv.addObject("userClicksbrandProducts", true);
+		Brand brand=null;
+		brand=brandDao.get(id);
+		mv.addObject("title",brand.getName());
+		mv.addObject("brand", brand);
+		mv.addObject("userClicksbrand", true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
+		return mv;
+	}
+	@RequestMapping(value={"/show/type/{id}/products"})
+	public ModelAndView ShowTypeProducts(@PathVariable("id") int id)
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		Type type=null;
+		type=typeDao.get(id);
+		mv.addObject("title",type.getName());
+		mv.addObject("type",type);
+		mv.addObject("UserClicksType", true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
 	

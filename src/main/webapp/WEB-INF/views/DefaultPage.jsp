@@ -34,9 +34,12 @@ window.menu="${title}";
 <c:if test="${userClicksallProducts==true}">
 <%@include file="allProducts.jsp" %>
 </c:if>
-<c:if test="${userClicksallProducts==true or userClickscategoryProducts==true}">
-<%@include file="listProducts.jsp" %>
 
-</c:if>
+
+
+
+
+
+
 </body>
 </html>

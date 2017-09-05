@@ -26,14 +26,13 @@
 <link rel="stylesheet" href="${css}/Darkly.css">
 <!-- Customcss file -->
 <link rel="stylesheet" href="${css}/customCss.css">
-
-
+<!-- Custom java script file  -->
 <!-- jQuery library -->
 <script src="${js}/JQuery.js"></script>
-
 <!-- Latest compiled JavaScript -->
 <script src="${js}/bootstrap.min.js"></script>
-<!-- Custom java script file  -->
+<!-- jquery data table plugin -->
+<script src="${js}/jquery.dataTables.js"></script>
 <script src="${js}/myApp.js"></script>
 </head>
 <body>
@@ -59,11 +58,7 @@
 <%@include file="BrandNavbar.jsp" %>
 </li>
 <li class="dropdown">
-<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Types<span class="caret"></span></a>
-<ul class="dropdown-menu">
-<li><a href="#">Smart Phones</a></li>
-<li><a href="#">Featured Phones</a></li>
-</ul>
+<%@include file="TypeNavbar.jsp" %>
 </li>
 <li class="dropdown">
 <%@include file="CategoryNavbar.jsp"%>
