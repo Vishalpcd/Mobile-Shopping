@@ -8,11 +8,15 @@
 <table id="productListTable" class="table table-striped table-bordered table-hover">
 <thead>
 <tr>
-<th>id</th>
-<th>name</th>
-<th>surname</th>
+<th></th>
+<th>Name</th>
+<th>Brand</th>
+<th>Price</th>
+<th>Quantity</th>
+<th><th>
 </tr>
 </thead>
 </table>
+
 </body>
 </html>

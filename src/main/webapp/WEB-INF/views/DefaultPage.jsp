@@ -8,10 +8,13 @@
 <link rel="icon" type="jpg,png,jpeg,gif" href="${images}/title.jpg"></link>
 <title>Mobile Shopping -${title}</title>
 <script>
-window.menu="${title}";
+window.menu='${title}';
+//adding contextRoot 
+window.contextRoot='${contextRoot}'
 </script>
 </head>
 <body>
+
 <!-- header -->
 <%@include file="header.jsp" %>
 <!-- home  -->
@@ -32,14 +35,39 @@ window.menu="${title}";
 </c:if>
 <!-- allproducts -->
 <c:if test="${userClicksallProducts==true}">
+<script>
+window.categoryId='-1';
+</script>
 <%@include file="allProducts.jsp" %>
 </c:if>
 
 
+<c:if test="${userClickscategoryProducts==true}">
+<script>
+<!--test("%{category.id}%");-->
+window.categoryId='${category.id}';
+</script>
+<%@include file="allProducts.jsp" %>
+</c:if>
+
+<c:if test="${userClicksbrandProducts==true}">
+<script>
+window.brandId='${brand.id}';
+</script>
+<%@include file="allProducts.jsp" %>
+</c:if>
+<c:if test="${userClickstypeProducts==true}">
+<script>
+window.typeId='${type.id}';
+</script>
+<%@include file="allProducts.jsp" %>
+</c:if>
 
 
+<!-- single product.jsp -->
 
-
-
+<c:if test="${UserClickProduct==true}">
+<%@include file="singleProduct.jsp" %>
+</c:if>
 </body>
 </html>

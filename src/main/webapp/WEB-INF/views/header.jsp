@@ -14,6 +14,9 @@
     <spring:url var="js" value="/resources/js"/>
     <!-- images variable using spring url element -->
     <spring:url var="images" value="/resources/images"/>
+    <spring:url var="image" value=""/>
+
+    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,6 +27,8 @@
 <link rel="stylesheet" href="${css}/bootstrap.min.css">
 <!-- Darkly theme -->
 <link rel="stylesheet" href="${css}/Darkly.css">
+<!-- Data table css file -->
+<link rel="stylesheet" href="${css}/dataTables.bootstrap.css">
 <!-- Customcss file -->
 <link rel="stylesheet" href="${css}/customCss.css">
 <!-- Custom java script file  -->
@@ -33,6 +38,9 @@
 <script src="${js}/bootstrap.min.js"></script>
 <!-- jquery data table plugin -->
 <script src="${js}/jquery.dataTables.js"></script>
+<!-- data table bootstrap javascript file -->
+<script src="${js}/dataTables.bootstrap.js"></script>
+<!-- adding custom java script file -->
 <script src="${js}/myApp.js"></script>
 </head>
 <body>
@@ -54,13 +62,13 @@
 <div class="collapse navbar-collapse" id="tog">
 <ul class="nav navbar-nav">
 <li id="home"><a href="${contextRoot}/home"><span class="glyphicon glyphicon-home"></span></a></li>
-<li class="dropdown">
+<li class="dropdown" id="brand">
 <%@include file="BrandNavbar.jsp" %>
 </li>
-<li class="dropdown">
+<li class="dropdown" id="type">
 <%@include file="TypeNavbar.jsp" %>
 </li>
-<li class="dropdown">
+<li class="dropdown" id="category">
 <%@include file="CategoryNavbar.jsp"%>
 </li>
 <li><a href="${contextRoot}/about">about us</a></li>

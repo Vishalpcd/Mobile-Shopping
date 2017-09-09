@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.MobileShopping.exception.ProductNotFoundException;
 import com.niit.MobileShoppingBackend.DAO.BrandDAO;
 import com.niit.MobileShoppingBackend.DAO.CatDao;
 import com.niit.MobileShoppingBackend.DAO.ProductDAO;
@@ -126,6 +127,9 @@ public class PageController {
 	@RequestMapping(value={"/show/category/{id}/products"})
 	public ModelAndView ShowCategoryProducts(@PathVariable("id") int id){
 		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("title","categoryProducts");//message is attribute name with value
+		mv.addObject("userClickscategoryProducts",true);
+		
 		//to fetch the categogry id to give the title name 
 		Category category=null;
 		category=catDao.get(id);
@@ -146,11 +150,12 @@ public class PageController {
 	public ModelAndView ShowBrandProducts(@PathVariable("id") int id)
 	{
 		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("title","brandProducts");//message is attribute name with value
+		mv.addObject("userClicksbrandProducts",true);
 		Brand brand=null;
 		brand=brandDao.get(id);
 		mv.addObject("title",brand.getName());
 		mv.addObject("brand", brand);
-		mv.addObject("userClicksbrand", true);
 		//passing list of Products list
 		mv.addObject("Products",productDao.list());
 		//passing list of categories
@@ -165,6 +170,8 @@ public class PageController {
 	public ModelAndView ShowTypeProducts(@PathVariable("id") int id)
 	{
 		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("title","typeProducts");//message is attribute name with value
+		mv.addObject("userClickstypeProducts",true);
 		Type type=null;
 		type=typeDao.get(id);
 		mv.addObject("title",type.getName());
@@ -178,6 +185,33 @@ public class PageController {
 		mv.addObject("Brands",brandDao.list());
 		//getting the list of the type 
 		mv.addObject("Types",typeDao.list());
+		return mv;
+	}
+	@RequestMapping(value={"/show/{id}/product"})
+	public ModelAndView ShowProduct(@PathVariable("id") int id) throws ProductNotFoundException
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("UserClickProduct", true);
+		Product product=null;
+		product=productDao.get(id);
+		if(product==null) throw new ProductNotFoundException();
+		mv.addObject("title", product.getName());
+		product.setViews(product.getViews()+1);
+		//update the view count
+		productDao.update(product);
+		//to use product table or product class in jsp page 
+		mv.addObject("product", product);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
+		
+		
+		
 		return mv;
 	}
 	
