@@ -71,9 +71,15 @@
 <li class="dropdown" id="category">
 <%@include file="CategoryNavbar.jsp"%>
 </li>
+<!-- about  -->
 <li><a href="${contextRoot}/about">about us</a></li>
+<!-- show all products -->
 <li><a href="${contextRoot}/show/all/products">Show all Products</a></li>
+<!-- Manage Products -->
+<li><a href="${contextRoot}/Manage/products">Manage Products</a></li>
+<!-- Login -->
 <li><a href="${contextRoot}/login">Login</a></li>
+<!-- signup -->
 <li><a href="${contextRoot}/signup">signup</a></li>
 </ul>
 </div>
