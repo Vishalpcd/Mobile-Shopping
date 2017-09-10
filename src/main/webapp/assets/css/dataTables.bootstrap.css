@@ -110,7 +110,7 @@ table.dataTable thead .sorting_desc:after {
 }
 table.dataTable thead .sorting_asc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:after {
-  color: #eee;
+  color: #23221d;
 }
 
 div.dataTables_scrollHead table.dataTable {

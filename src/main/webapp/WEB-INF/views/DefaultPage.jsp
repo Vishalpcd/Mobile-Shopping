@@ -21,7 +21,7 @@ window.contextRoot='${contextRoot}'
 <c:if test="${userClicksHome==true}">
 <%@include file="home.jsp" %>
 </c:if>
-<!-- abou us -->
+<!-- about us -->
 <c:if test="${userClicksAbout==true}">
 <%@include file="about.jsp" %>
 </c:if>
