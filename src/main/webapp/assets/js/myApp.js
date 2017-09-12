@@ -35,7 +35,7 @@ $(function() {
 	if($table.length)
 		{
 		var jsonUrl='';
-		if(window.categoryId=='-1')
+		if(window.categoryId=='')
 			{
 			 jsonUrl='/MobileShopping/json/data/all/products';
 			}
@@ -44,18 +44,16 @@ $(function() {
 	       // alert('${category.id}');
 	       // alert(window.categoryId);
 			//jsonUrl='/MobileShopping/json/data/type/'+window.typeId+'/products';
-			
 			jsonUrl='/MobileShopping/json/data/type/'+window.categoryId+'/products';
-			
-			
 			}
 		else if(window.typeId==''+window.typeId+'')
 			{
 			jsonUrl='/MobileShopping/json/data/type/'+window.typeId+'/products';
 			}
-		else
+		else 
 			{
-			jsonUrl='/MobileShopping/json/data/brand/'+window.brandId+'/products';
+			jsonUrl='/MobileShopping/json/data/type/'+window.brandId+'/products';
+			/*jsonUrl='/MobileShopping/json/data/brand/'+window.brandId+'/products';*/
 			}
 		/*else
 			{

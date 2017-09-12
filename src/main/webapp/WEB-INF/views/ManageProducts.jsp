@@ -11,22 +11,25 @@
 </div>
 </div>
 <!-- form elements -->
-<sf:form class="form-horizontal" modelAttribute="product">
+<sf:form class="form-horizontal" modelAttribute="product"
+action="${contextRoot}/Manage/products"
+method="POST"
+>
 <div class="form-group">
 <!-- for product name -->
 <label class="control-label col-md-4" for="name">Enter product name :</label>
 <div class="col-md-8">
 <sf:input type="text" path="name" id="name" placeholder="Enter product name" class="form-control"></sf:input>
-<em class="help-block">Please enter product name</em>
+<sf:errors path="name" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
 <!-- brand name  -->
 <div class="form-group">
 <!-- for product name -->
-<label class="control-label col-md-4" for="brand">Enter product name :</label>
+<label class="control-label col-md-4" for="brand">Enter brand name :</label>
 <div class="col-md-8">
 <sf:input type="text" path="brand" id="brand" placeholder="Enter brand name" class="form-control"></sf:input>
-<em class="help-block">Please enter product name</em>
+<sf:errors path="brand" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
 <!-- description -->
@@ -34,7 +37,7 @@
 <label class="control-label col-md-4" for="name">Enter product Description :</label>
 <div class="col-md-8">
 <sf:textarea rows="4" path="description" id="description" placeholder="Enter product description" class="form-control"></sf:textarea>
-<em class="help-block">Please enter product description</em>
+<sf:errors path="description" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
 <!-- amount -->
@@ -43,7 +46,7 @@
 <label class="control-label col-md-4" for="unitPrice">Enter amount :</label>
 <div class="col-md-8">
 <sf:input type="number" path="unitPrice" id="unitPrice" placeholder="Enter amount name" class="form-control"></sf:input>
-<em class="help-block">Please enter amount</em>
+<sf:errors path="unitPrice" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
 <!-- quantity -->
@@ -51,7 +54,7 @@
 <label class="control-label col-md-4" for="quantity">Enter quantity :</label>
 <div class="col-md-8">
 <sf:input type="number" path="quantity" id="quantity" placeholder="Enter product quantity" class="form-control"></sf:input>
-<em class="help-block">Please enter product quantity name</em>
+<sf:errors path="quantity" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
 <!-- category slection -->
@@ -79,11 +82,10 @@ itemValue="id"
 
 
 />
-
-<em class="help-block">Please select brand name  </em>
+<!-- type selection -->
 </div>
 </div>
-<!-- type slection -->
+<!-- type selection -->
 <div class="form-group">
 <label class="control-label col-md-4" for="typeId">select type :</label>
 <div class="col-md-8">
@@ -93,7 +95,7 @@ itemLabel="name"
 itemValue="id"
 />
 
-<em class="help-block">Please select Type </em>
+
 </div>
 </div>
 

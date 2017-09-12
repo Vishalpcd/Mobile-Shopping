@@ -36,7 +36,8 @@ window.contextRoot='${contextRoot}'
 <!-- allproducts -->
 <c:if test="${userClicksallProducts==true}">
 <script>
-window.categoryId='-1';
+
+window.categoryId='';
 </script>
 <%@include file="allProducts.jsp" %>
 </c:if>
