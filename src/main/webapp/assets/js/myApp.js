@@ -39,20 +39,21 @@ $(function() {
 			{
 			 jsonUrl='/MobileShopping/json/data/all/products';
 			}
-		else if(window.categoryId==''+window.categoryId+'')
+		else if(window.categoryId==''+window.categoryId)
 			{
 	       // alert('${category.id}');
 	       // alert(window.categoryId);
 			//jsonUrl='/MobileShopping/json/data/type/'+window.typeId+'/products';
-			jsonUrl='/MobileShopping/json/data/type/'+window.categoryId+'/products';
+			jsonUrl='/MobileShopping/json/data/category/'+window.categoryId+'/products';
 			}
-		else if(window.typeId==''+window.typeId+'')
+		else if(window.typeId==''+window.typeId)
 			{
 			jsonUrl='/MobileShopping/json/data/type/'+window.typeId+'/products';
 			}
 		else 
 			{
-			jsonUrl='/MobileShopping/json/data/type/'+window.brandId+'/products';
+			/*alert(''+window.brandId);*/
+			jsonUrl='/MobileShopping/json/data/brand/'+window.brandId+'/products';
 			/*jsonUrl='/MobileShopping/json/data/brand/'+window.brandId+'/products';*/
 			}
 		/*else
@@ -121,10 +122,180 @@ $(function() {
 			
 			//console.log('inside the table');
 		}
-
-
-
 	
+	$('.switch input[type="checkbox"]')
+	.on(
+			'change',
+			function() {
+
+				// alert('entering function');
+				var checkbox = $(this);
+				// check if the checkbox is checked returns true or
+				// false
+				var checked = checkbox.prop('checked');
+				var dMsg = (checked) ? 'You want to activate the product?'
+						: 'You want to deactivate the product?';
+				var value = checkbox.prop('value');
+
+				bootbox
+						.confirm({
+							size : 'medium',
+							title : 'Product Activation & Deactivation',
+							message : dMsg,
+
+							callback : function(confirmed) {
+								if (confirmed) {
+
+									bootbox
+											.alert({
+												size : 'medium',
+												title : 'Information',
+												message : 'You are going to perform operation on product'
+														+ value
+											});
+
+								} else {
+									checkbox.prop('checked', !checked);
+								}
+							}
+						});
+
+});
+	
+	var $eTable=$('#editTableProduct')
+	if($eTable.length)
+		{
+		var jsonUrl='/MobileShopping/json/data/admin/all/products';
+		$eTable.DataTable({
+			lengthMenu:[[3,5,10,-1],['3 records','5 records','10 records','all']],
+			pageLength: 3,
+			ajax:{
+				url:jsonUrl,
+				dataSrc:''
+			},
+
+			columns:[
+				{
+					data: 'id'
+				},
+				{
+					data: 'code',
+					bSortable: false,
+					mRender: function(data,type,row)
+					{
+						return '<img src="/MobileShopping/resources/images/'+data+'.jpg" id="Listimage" class="img-responsive img-circle"/>'
+					}
+				},
+				{
+					data: 'name'
+				},
+				{
+					data: 'brand'
+				},
+
+				{
+					data: 'unitPrice',
+					mRender: function(data,type,row)
+					{
+						return '&#x20B9; ' +data//getting the rupee symbol 
+					}
+				},
+
+				{
+					data: 'quantity'
+				},
+				{
+					data:'active',
+						bSortable:false,
+						mRender:function(data,type,row)
+						{
+							
+							var str='';
+							str+='<label class="switch">'
+								if(data)
+									{
+									str+='<input type="checkbox" checked="checked" value="'+row.id+'">'
+									}
+								else
+									{
+									str+='<input type="checkbox" value="'+row.id+'" >'
+									}
+									str+='<span class="slider"></span></label>';
+							return str;
+						}
+				}
+				
+		],
+			
+
+		initComplete : function() {
+
+			var api = this.api();
+
+			api
+					.$('.switch input[type="checkbox"]')
+					.on(
+							'change',
+							function() {
+
+								// alert('entering function');
+								var checkbox = $(this);
+								// check if the checkbox is
+								// checked
+								// returns true or
+								// false
+								var checked = checkbox
+										.prop('checked');
+								var dMsg = (checked) ? 'You want to activate the product?'
+										: 'You want to deactivate the product?';
+								var value = checkbox.prop('value');
+
+								bootbox
+										.confirm({
+											size : 'medium',
+											title : 'Product Activation & Deactivation',
+											message : dMsg,
+
+											callback : function(
+													confirmed) {
+
+												if (confirmed) {
+
+													var activationUrl = '/MobileShopping/Manage/product/'+ value+ '/activation';
+													$
+															.post(
+																	activationUrl,
+																	function(
+																			data) {
+																		bootbox
+																				.alert({
+																					size : 'medium',
+																					title : 'Info',
+																					message : data
+																				});
+																	});
+
+												} else {
+													checkbox
+															.prop(
+																	'checked',
+																	!checked);
+												}
+											}
+										});
+
+							});
+		}
+
+	});
+
+}
+	
+
+
+
+
+		
 	
 });
 

@@ -73,5 +73,14 @@ window.typeId='${type.id}';
 <c:if test="${userClicksManageProducts==true}">
 <%@include file="ManageProducts.jsp" %>
 </c:if>
+<!-- Edit product -->
+<c:if test="${userClickseditProducts==true}">
+<%@include file="EditProducts.jsp" %>
+</c:if>
+<!-- Manage brand -->
+<c:if test="${userClicksManageBrands==true}">
+<%@include file="ManageBrand.jsp" %>
+</c:if>
+
 </body>
 </html>

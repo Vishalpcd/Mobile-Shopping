@@ -24,6 +24,13 @@ public class JsonDataController {
 	@ResponseBody
 	public List<Product> getAllProducts()
 	{
+		return productDao.listActiveProduct();
+	}
+	@RequestMapping("/admin/all/products")
+	//it will generate the structure for the list automatically we don't need to define the ModelAndView like we have done in PageController
+	@ResponseBody
+	public List<Product> getAllProductsforAdmin()
+	{
 		return productDao.list();
 	}
 

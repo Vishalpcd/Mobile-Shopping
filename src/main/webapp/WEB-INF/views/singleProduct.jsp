@@ -2,12 +2,11 @@
     pageEncoding="ISO-8859-1"%>
 
 <body>
-<div class="responsive">
 <div class="row">
-<div class="col-md-4">
-<img src="${images}/${product.code}.jpg" class="img-responssive"></img>
+<div class="col-md-4 col-xs-4">
+<img src="${images}/${product.code}.jpg" class="img-responsive" width="420" height="420"></img>
 </div>
-<div class="col-md-8">
+<div class="col-md-8 col-xs-8">
 <h2><strong>Name:</strong> ${product.name}</h2><br>
 <p><h4><strong>Description:</strong> <br> ${product.description}</h4></p><br>
 <h3><strong>Price:</strong> &#8377; ${product.unitPrice} /-</h3>
@@ -22,7 +21,6 @@
 </c:choose>
 
 <a href="${contextRoot}/show/all/products" class="btn btn-success">back</a>
-</div>
 </div>
 </div>
 </body>

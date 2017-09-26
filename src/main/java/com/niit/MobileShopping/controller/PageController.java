@@ -1,6 +1,6 @@
 package com.niit.MobileShopping.controller;
 
-import java.io.PrintWriter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,11 +13,12 @@ import com.niit.MobileShoppingBackend.DAO.BrandDAO;
 import com.niit.MobileShoppingBackend.DAO.CatDao;
 import com.niit.MobileShoppingBackend.DAO.ProductDAO;
 import com.niit.MobileShoppingBackend.DAO.TypeDAO;
+import com.niit.MobileShoppingBackend.DAO.UserDao;
 import com.niit.MobileShoppingBackend.DTO.Brand;
 import com.niit.MobileShoppingBackend.DTO.Category;
 import com.niit.MobileShoppingBackend.DTO.Product;
 import com.niit.MobileShoppingBackend.DTO.Type;
-import com.sun.mail.iap.Response;
+import com.niit.MobileShoppingBackend.DTO.User;
 
 @Controller//it specifies that this class is a Controller for this project 
 public class PageController {
@@ -29,12 +30,19 @@ public class PageController {
 	private BrandDAO brandDao;
 	@Autowired
 	private TypeDAO typeDao;
+	@Autowired
+	private UserDao userDao;
 @RequestMapping(value={"/home","/"})//provides url pattern for specific page as given below
 	public ModelAndView index()//this holds Model and View i.e returns model and view in combined manner 
 	{
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","home");//message is attribute name with value
 		mv.addObject("userClicksHome",true);
+		mv.addObject("user",userDao.listActiveUsers());
+		
+		mv.addObject("userRole", userDao.getUserId(4));
+		mv.addObject("adminRole", userDao.getUserId(5));
+		
 		
 		//passing list of Products list
 		mv.addObject("Products",productDao.list());
@@ -82,24 +90,7 @@ public class PageController {
 		mv.addObject("Types",typeDao.list());
 		return mv;
 	}
-	@RequestMapping(value={"/signup"})//provides url pattern for specific page as given below
-
-	public ModelAndView signupPage()//this holds Model and View i.e returns model and view in combined manner 
-	{
-		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
-		mv.addObject("title","signup");//message is attribute name with value
-		mv.addObject("userClicksSignup",true);
-		//passing list of Products list
-		mv.addObject("Products",productDao.list());
-		//passing list of categories
-		mv.addObject("Categories",catDao.list());
-		//getting the list of brands 
-		mv.addObject("Brands",brandDao.list());	
-		//getting the list of the type 
-		mv.addObject("Types",typeDao.list());
-		return mv;
-		
-	}
+	
 	/*
 	 * Mapping for the show all products and category
 	 * 
@@ -110,6 +101,23 @@ public class PageController {
 		ModelAndView mv=new ModelAndView("DefaultPage");//it will search page as a name of the web page
 		mv.addObject("title","allProducts");//message is attribute name with value
 		mv.addObject("userClicksallProducts",true);
+		//passing list of Products list
+		mv.addObject("Products",productDao.list());
+		//passing list of categories
+		mv.addObject("Categories",catDao.list());
+		//getting the list of brands 
+		mv.addObject("Brands",brandDao.list());
+		//getting the list of the type 
+		mv.addObject("Types",typeDao.list());
+		return mv;
+	}
+	//mapping for the edit products
+	@RequestMapping(value={"/edit/products"})
+	public ModelAndView EditProducts()
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("title", "Edit Product");
+		mv.addObject("userClickseditProducts", true);
 		//passing list of Products list
 		mv.addObject("Products",productDao.list());
 		//passing list of categories

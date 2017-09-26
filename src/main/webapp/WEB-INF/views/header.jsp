@@ -40,6 +40,8 @@
 <script src="${js}/jquery.dataTables.js"></script>
 <!-- data table bootstrap javascript file -->
 <script src="${js}/dataTables.bootstrap.js"></script>
+<!-- Bootbox -->
+<script src="${js}/bootbox.min.js"></script>
 <!-- adding custom java script file -->
 <script src="${js}/myApp.js"></script>
 </head>
@@ -77,6 +79,10 @@
 <li><a href="${contextRoot}/show/all/products">Show all Products</a></li>
 <!-- Manage Products -->
 <li><a href="${contextRoot}/Manage/products">Manage Products</a></li>
+<!-- Edit Product -->
+<li><a href="${contextRoot}/edit/products">Edit Products</a></li>
+<!-- Manage Brands -->
+<li><a href="${contextRoot}/Manage/brand">Manage Brands</a></li>
 <!-- Login -->
 <li><a href="${contextRoot}/login">Login</a></li>
 <!-- signup -->

@@ -14,6 +14,7 @@
 <sf:form class="form-horizontal" modelAttribute="product"
 action="${contextRoot}/Manage/products"
 method="POST"
+enctype="multipart/form-data"
 >
 <div class="form-group">
 <!-- for product name -->
@@ -59,21 +60,20 @@ method="POST"
 </div>
 <!-- category slection -->
 <div class="form-group">
-<label class="control-label col-md-4" for="categoryId">selecct category :</label>
+<label class="control-label col-md-4" for="categoryId">select category :</label>
 <div class="col-md-8">
 <sf:select  path="categoryId" id="categoryId" class="form-control"
 items="${categories}"
 itemLabel="name"
 itemValue="id"
 />
-
-
-<em class="help-block">Please select category </em>
 </div>
 </div>
+
+
 <!-- brand selection -->
 <div class="form-group">
-<label class="control-label col-md-4" for="brandId">selecct brand :</label>
+<label class="control-label col-md-4" for="brandId">select brand :</label>
 <div class="col-md-8">
 <sf:select  path="brandId" id="brandId" class="form-control" 
 items="${brands}"
@@ -98,6 +98,16 @@ itemValue="id"
 
 </div>
 </div>
+
+<!-- image upload  -->
+<div class="form-group">
+<label class="control-label col-md-4" for="file">Choose an image :</label>
+<div class="col-md-8">
+<sf:input type="file" path="file" id="file"  class="form-control"></sf:input>
+<sf:errors file="file" cssClass="help-block" element="em"></sf:errors>
+</div>
+</div>
+
 
 <!-- submit button -->
 <div class="col-md-offset-4 col-md-4">
