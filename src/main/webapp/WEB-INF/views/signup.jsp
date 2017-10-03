@@ -61,7 +61,7 @@
 
 <!-- submit -->
 <div class="col-md-offset-2 col-md-4">
-<input type="submit" name="submit" id="submit" class="btn btn-primary" onclick="match()">
+<input type="submit" name="submit" id="submit" class="btn btn-primary" onclick="match()" value="Signup">
 <sf:hidden path="id"/>
 <sf:hidden path="role"/>
 <sf:hidden path="enabled"/>

@@ -14,11 +14,14 @@ window.contextRoot='${contextRoot}'
 </script>
 </head>
 <body>
-
 <!-- header -->
 <%@include file="header.jsp" %>
 <!-- home  -->
 <c:if test="${userClicksHome==true}">
+<%@include file="home.jsp" %>
+</c:if>
+<!-- user seccessfully logged in -->
+<c:if test="${userClicksSuccessLogin==true}">
 <%@include file="home.jsp" %>
 </c:if>
 <!-- about us -->
@@ -81,6 +84,12 @@ window.typeId='${type.id}';
 <c:if test="${userClicksManageBrands==true}">
 <%@include file="ManageBrand.jsp" %>
 </c:if>
-
+<!-- error while login -->
+<c:if test="${userClicksLoginError==true}">
+<%@ include file="login.jsp" %>
+</c:if>
+<c:if test="${userClicksCart==true}">
+<%@include file="cart.jsp" %>
+</c:if>
 </body>
 </html>

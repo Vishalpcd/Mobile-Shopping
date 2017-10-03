@@ -28,7 +28,17 @@ $(function() {
 		alert('SAMEER ' +id);
 	};
 	*/
-
+//to tackle the  csrf token
+	var token=$('meta[name="_csrf"]').attr('content');
+	var header=$('meta[name="_csrf_header"]').attr('content');
+	if(token.length > 0 && header.length >0)
+		{
+			$(document).ajaxSend(function(e,xhr,options)
+					{
+						xhr.setRequestHeader(header,token);
+					});
+			
+		}
 	
 	var $table= $('#productListTable');
 
@@ -105,8 +115,11 @@ $(function() {
 					{
 						var str='';
 						str+='<a href="/MobileShopping/show/'+data+'/product" class="btn btn-info"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';//for creating extra space 
-						str+='<a href="/MobileShopping/cart/add/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-						
+						//if the user is user then only available to the user 
+						if(userRole=='USER')
+							{
+								str+='<a href="/MobileShopping/cart/add/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+							}
 						return str;
 					}
 				}

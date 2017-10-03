@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1"%>
     <!-- spring tag library -->
     <!-- using this tag library we can use spring tags in our project -->
+    <!-- spring security tag liberary -->
+    <%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
     <!-- to fetch bootstrap files add below uri -->
     <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
     <!-- if you dont add this then you can't add conextRoot  -->
@@ -23,6 +25,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- for ajax request  -->
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+
+
 <!-- Bootstrap library -->
 <link rel="stylesheet" href="${css}/bootstrap.min.css">
 <!-- Darkly theme -->
@@ -44,6 +51,12 @@
 <script src="${js}/bootbox.min.js"></script>
 <!-- adding custom java script file -->
 <script src="${js}/myApp.js"></script>
+<script>
+
+window.userRole='${userModel.role}';
+
+
+</script>
 </head>
 <body>
 <div class="container-fluid">
@@ -78,15 +91,36 @@
 <!-- show all products -->
 <li><a href="${contextRoot}/show/all/products">Show all Products</a></li>
 <!-- Manage Products -->
+<security:authorize access="hasAuthority('ADMIN')">
 <li><a href="${contextRoot}/Manage/products">Manage Products</a></li>
 <!-- Edit Product -->
 <li><a href="${contextRoot}/edit/products">Edit Products</a></li>
 <!-- Manage Brands -->
 <li><a href="${contextRoot}/Manage/brand">Manage Brands</a></li>
+</security:authorize>
 <!-- Login -->
+<security:authorize access="isAnonymous()">
 <li><a href="${contextRoot}/login">Login</a></li>
 <!-- signup -->
 <li><a href="${contextRoot}/signup">signup</a></li>
+</security:authorize>
+<!-- user name  -->
+<li class="dropdown">
+<a href="javascript:void(0)"
+	class="btn btn-default dropdown-toggle"
+	id="dropdownMenu1"
+	data-toggle="dropdown">${userModel.fullName}<span class="caret"></span>
+</a>
+<ul class="dropdown-menu">
+<security:authorize access="hasAuthority('USER')">
+<li><a href="${contextRoot}/cart/show">Cart<span class="glyphicon glyphicon-shopping-cart"></span>&#8377; ${userModel.cart.grandTotal}</a></li>
+</security:authorize>
+<li class="divider" role="seperator"></li>
+<security:authorize access="isAuthenticated()">
+<li><a href="${contextRoot}/logout" class="btn btn-danger">logout</a></li>
+</security:authorize>
+</ul>
+</li>
 </ul>
 </div>
 </nav>
