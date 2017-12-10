@@ -24,7 +24,7 @@
 </div>
 </div>
 <div class="col-md-offset-2 col-md-4">
-<input type="submit" name="submit" id="submit" class="btn btn-primary">
+<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add Brand">
 <sf:hidden path="id"/>
 <sf:hidden path="active"/>
 </div>

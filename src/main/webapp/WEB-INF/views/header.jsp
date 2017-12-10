@@ -105,13 +105,14 @@ window.userRole='${userModel.role}';
 <li><a href="${contextRoot}/signup">signup</a></li>
 </security:authorize>
 <!-- user name  -->
+<c:if test="${userModel.fullName!=null}">
 <li class="dropdown">
 <a href="javascript:void(0)"
 	class="btn btn-default dropdown-toggle"
 	id="dropdownMenu1"
 	data-toggle="dropdown">${userModel.fullName}<span class="caret"></span>
 </a>
-<ul class="dropdown-menu">
+<ul class="dropdown-menu" id="user">
 <security:authorize access="hasAuthority('USER')">
 <li><a href="${contextRoot}/cart/show">Cart<span class="glyphicon glyphicon-shopping-cart"></span>&#8377; ${userModel.cart.grandTotal}</a></li>
 </security:authorize>
@@ -121,6 +122,8 @@ window.userRole='${userModel.role}';
 </security:authorize>
 </ul>
 </li>
+</c:if>
+
 </ul>
 </div>
 </nav>

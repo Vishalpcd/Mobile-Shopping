@@ -5,8 +5,13 @@
 <h3>Signup</h3>
 </div>
 </div>
+<c:if test="${not empty message}">
+<div class="panel">
+<h5>${message}</h5>
+</div>
+</c:if>
 <div class="col-md-offset-2 col-md-8">
-<sf:form name="frm" class="form-horizontal" method="POST" action="${contextRoot}/signup" modelAttribute="user">
+<sf:form name="frm" class="form-horizontal" method="POST" action="${contextRoot}/signup" modelAttribute="user" onSubmit="return PassWordMatch()">
 <div class="form-group">
 <label class="control-label col-md-4" for="firstName">Enter your first name  :</label>
 <div class="col-md-8">
@@ -36,7 +41,7 @@
 <div class="form-group">
 <label class="control-label col-md-4" for="pasword">Enter your password :</label>
 <div class="col-md-8">
-<sf:input type="password" path="password" id="password" placeholder="Enter your password  " class="form-control"></sf:input>
+<sf:input type="password" path="password" id="ps1" placeholder="Enter your password  " class="form-control"></sf:input>
 <sf:errors path="password" cssClass="help-block" element="em"></sf:errors>
 </div>
 </div>
@@ -44,7 +49,7 @@
 <div class="form-group">
 <label class="control-label col-md-4" for="password">Re-enter your password :</label>
 <div class="col-md-8">
-<input type="password" name="re-password" id="re-password" placeholder="Enter your password  " class="form-control"/>
+<input type="password" name="re-password" id="ps2" placeholder="Enter your password  " class="form-control"/>
 </div>
 </div>
 

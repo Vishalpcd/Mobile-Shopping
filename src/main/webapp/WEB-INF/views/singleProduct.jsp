@@ -17,7 +17,7 @@
 <c:otherwise>
 <h6><strong>Quantity available:</strong> ${product.quantity} </h6><br>
 <security:authorize access="hasAuthority('USER')">
-<a href="${contextRoot}/cart/add/'+data+'/product" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
+<a href="${contextRoot}/cart/add/${product.id}/product" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart"></span>Add to cart</a>
 </security:authorize>
 </c:otherwise>
 </c:choose>

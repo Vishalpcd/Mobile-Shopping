@@ -24,15 +24,17 @@ public class CartLineService {
 	@Autowired
 	private HttpSession session;
 	
+	
 	//return the cart of the user who logged in
 	private Cart getCart()
 	{
+		
 		return ((UserModel)session.getAttribute("userModel")).getCart();
 	}
 	//returns the cartLine list by the cart id 
 	public List<CartLine> getCartLines()
 	{
-		return cartLineDao.availableCartLineList(this.getCart().getId());
+		return cartLineDao.list(this.getCart().getId());
 	}
 	public String addCart(int product_id) {
 		String response=null;
@@ -67,12 +69,11 @@ public class CartLineService {
 		String response=null;
 		Cart cart=this.getCart();
 		CartLine cartLine=cartLineDao.get(id);
-		double price=cartLine.getPrice();
 		boolean rmv=cartLineDao.delete(cartLine);
 		if(rmv==true)
 		{
 			cart.setCartline_id(cart.getCartline_id() -1);
-			cart.setGrandTotal(cart.getGrandTotal()- price);
+			cart.setGrandTotal(cart.getGrandTotal()- cartLine.getPrice());
 			cartLineDao.update(cart);
 			response="result=removed";
 			

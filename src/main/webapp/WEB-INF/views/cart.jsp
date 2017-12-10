@@ -27,7 +27,7 @@
 <div class="row">
 <div class="col-md-offset-3">
 <div class="col-md-3">
-<a href="${contextRoot}/checkout" class="btn btn-success" >Checkout</a>
+<a href="${contextRoot}/Address" class="btn btn-success" >Checkout</a>
 </div>
 <div class="col-md-3">
 <h5>Grand Total: &#8377; ${userModel.cart.grandTotal}</h5>

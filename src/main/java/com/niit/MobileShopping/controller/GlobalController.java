@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.niit.MobileShopping.model.UserModel;
 import com.niit.MobileShoppingBackend.DAO.UserDao;
 import com.niit.MobileShoppingBackend.DTO.User;
-
+//this is the annotation for the globalController 
 @ControllerAdvice
 public class GlobalController {
 	
@@ -20,9 +20,9 @@ public class GlobalController {
 	@Autowired
 	private UserDao userDao;
 	
-	private UserModel userModel;
+	private UserModel userModel=null;
 	
-	//for login to the global i.e globaly available for all the controller 
+	//for login to the global i.e globally available for all the controller 
 	@ModelAttribute("userModel")
 	public UserModel getUserModel()
 	{
@@ -51,6 +51,8 @@ public class GlobalController {
 		}
 		//if session is already there then return it 
 		return (UserModel)session.getAttribute("userModel");
+		
+		//for address and user details write code here after creating the addressmodel class 
 		
 	}
 

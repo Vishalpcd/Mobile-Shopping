@@ -24,6 +24,14 @@ window.contextRoot='${contextRoot}'
 <c:if test="${userClicksSuccessLogin==true}">
 <%@include file="home.jsp" %>
 </c:if>
+<!-- Address page   -->
+<c:if test="${UserClicksCheckOut==true}">
+<%@include file="Address.jsp" %>
+</c:if>
+<!-- Reciept page  -->
+<c:if test="${UserClicksReceipt==true}">
+<%@include file="Receipt.jsp" %>
+</c:if>
 <!-- about us -->
 <c:if test="${userClicksAbout==true}">
 <%@include file="about.jsp" %>

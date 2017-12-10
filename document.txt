@@ -54,3 +54,59 @@ sessionFactory.getCurrentSession():
 =================================
 It will return the current  session .
 By using this we don't need to flush the task it autometically do it for us. 
+
+
+
+@ControllerAdvice
+=================
+By default the methods in an @ControllerAdvice apply globally to all Controllers. It can be use for the data which is going to be creating the session for the user and make available all the data to be used in that session 
+so that we don't need it create methods and other things every whenever we want any value
+
+
+
+POM.XML file
+=============
+It contains all the dependency files which will be available used in the project this is the main feature of the 
+maven project we don''t need to explicitly download  all the jar files we just need to specify the groupId,artifactId,version and 
+for some files we need to provide the scope which  specifies the for what purpose it is injected in the project
+
+
+File Structure 
+============
+
+It is the rule which used by many company to arrange the files and folder in some specific way so that development con be made easy.
+
+JQuery DataTable
+================
+I have used the JQuery data table to show all the product details in the table format with some extra features like sorting,without header data,paging
+and many more 
+
+Image:
+=======
+ 
+We are storing the images in the project storage it self and the name is given as the product code is assingned to the each product so that it can be easy to retrieve the image in the browser and can be identifide 
+easily because it is usiing the name of the image as product name for which it is assingned.
+
+
+web.xml
+========
+web.xml contains the all the configuration files the web project like servlet dispatcher class ,where to look for the spring security ,what is the listener class,it contains mapping that will taken by the servlet in servlet mapping ,etc.
+
+
+disptcher-servlet.xml file
+==========================
+
+dispatcher-servlet.xml file is used to indicate the servlet and the server to scan base packages that is where to look for the classes,images,servlet.
+
+spring-security.xml
+=================
+spring-security.xml file is used to used to make secure our website with the external users to access all the resources implementing this file now it works like 
+interceptor it will first check if the user has authority to access resources that are requested by the user.
+<http pattern="url pattern" security="">//for securiing the resources files we can even secure our resources like javaScript files and css files 
+<http>
+<intercept-url pattern="url pattern" access="ROLE_USER" or access="hasAuthority('USER')">
+</http>
+
+We can even set the page which will popup when user tries to access the resources which is not assigned to him 
+
+<access-denied-handler error-page="/error">//error is the page or view name which will be displayed at the time when user wants to access  the resources or pages that is not availablefor him.

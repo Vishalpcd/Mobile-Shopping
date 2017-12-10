@@ -8,12 +8,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.MobileShopping.service.CartLineService;
+import com.niit.MobileShoppingBackend.DAO.CartLineDao;
+import com.niit.MobileShoppingBackend.DAO.UserDao;
 
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 	@Autowired
 	private CartLineService cartLineService;
+	@Autowired
+	private UserDao userDao;
+	@Autowired
+	private CartLineDao cartLineDao;
 	@RequestMapping(value="/show")
 	public ModelAndView showCart(@RequestParam(name="result", required=false)String result)
 	{

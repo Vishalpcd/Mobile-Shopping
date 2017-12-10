@@ -1,5 +1,6 @@
 package com.niit.MobileShopping.controller;
 
+import javax.servlet.ServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class SignupController {
 	public ModelAndView signupSuccess()
 	{
 		ModelAndView mv=new ModelAndView("DefaultPage");
-		mv.addObject("title","signup Successfull");
+		mv.addObject("title","signup");
 		mv.addObject("userClicksSignup", true);
 		User nuser=new User();
 		//setting few fields
@@ -41,7 +42,7 @@ public class SignupController {
 		return mv;
 	}
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public String submitUser(@Valid @ModelAttribute("user") User muser,BindingResult result,Model model)
+	public String submitUser(@Valid @ModelAttribute("user") User muser/*creting object*/,BindingResult result/*creating result object*/,Model model,ServletRequest request)
 	{
 		
 		if(result.hasErrors())
@@ -50,9 +51,17 @@ public class SignupController {
 			model.addAttribute("userClicksSignup", true);
 			return "DefaultPage";
 		}
-		if(userDao.getByEmail(muser.getEmail())!=null)
+		//Object emailid=userDao.getByEmail(request.getParameter("email")).toString();
+		/*if(userDao.getByEmail(request.getParameter("email"))emailid!=null)
 		{
 			model.addAttribute("message","email id is already exist please re-enter different email address !!");
+		}*/
+		if(userDao.getByEmail(request.getParameter("email"))!=null)
+		{
+			model.addAttribute("message","email id is already exist please re-enter different email address !!");
+			model.addAttribute("userClicksSignup", true);
+			model.addAttribute("title", "Failed to SignUp");
+			return "DefaultPage";
 		}
 					
 			Cart cart=new Cart();
@@ -62,6 +71,7 @@ public class SignupController {
 			cart.setUser(muser);
 			muser.setCart(cart);
 			userDao.add(muser);
+			//Signup successfull  :) please login to go for shopping
 			//setting the userid as foreign key in the cart table 
 			model.addAttribute("message", "Signup successfull  :) please login to go for shopping");
 			model.addAttribute("title", "signup Successfull");

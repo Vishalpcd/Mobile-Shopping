@@ -2,12 +2,17 @@ package com.niit.MobileShopping.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +20,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.MobileShopping.exception.ProductNotFoundException;
+import com.niit.MobileShopping.model.UserModel;
+import com.niit.MobileShoppingBackend.DAO.AddressDAO;
 import com.niit.MobileShoppingBackend.DAO.BrandDAO;
+import com.niit.MobileShoppingBackend.DAO.CartLineDao;
 import com.niit.MobileShoppingBackend.DAO.CatDao;
 import com.niit.MobileShoppingBackend.DAO.ProductDAO;
 import com.niit.MobileShoppingBackend.DAO.TypeDAO;
 import com.niit.MobileShoppingBackend.DAO.UserDao;
+import com.niit.MobileShoppingBackend.DTO.Address;
 import com.niit.MobileShoppingBackend.DTO.Brand;
+import com.niit.MobileShoppingBackend.DTO.Cart;
 import com.niit.MobileShoppingBackend.DTO.Category;
 import com.niit.MobileShoppingBackend.DTO.Product;
 import com.niit.MobileShoppingBackend.DTO.Type;
@@ -37,6 +47,25 @@ public class PageController {
 	private TypeDAO typeDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private AddressDAO addressDAO;
+	@Autowired
+	private CatDao cartDao;
+	@Autowired
+	private CartLineDao cartLineDao;
+	
+	@Autowired
+	private HttpSession session;
+	
+	
+	//return the cart of the user who logged in
+	private Cart getCart()
+	{
+		
+		return ((UserModel)session.getAttribute("userModel")).getCart();
+	}
+	
+	
 
 	@RequestMapping(value = { "/home", "/" }) // provides url pattern for
 												// specific page as given below
@@ -83,7 +112,41 @@ public class PageController {
 
 		return mv;
 	}
-
+	//for adding the address in the data base
+	@RequestMapping(value="/Address",method=RequestMethod.GET)
+	public ModelAndView addAddress()
+	{
+		ModelAndView mv=new ModelAndView("DefaultPage");
+		mv.addObject("title", "Address");
+		mv.addObject("UserClicksCheckOut", true);
+		Cart cart=new Cart();
+		Address nAddress=new Address();
+		nAddress.setCartid(this.getCart().getId());
+		mv.addObject("address", nAddress);
+		return mv;
+	}
+	@RequestMapping(value="/Address",method=RequestMethod.POST)
+	public String submitAddress(@Valid @ModelAttribute("address") Address maddress,BindingResult result,Model model)
+	{
+		if(result.hasErrors())
+		{
+			model.addAttribute("title","Error");
+			model.addAttribute("message","Please fill the form as required ");
+			model.addAttribute("UserClicksCheckOut",true);
+			return "DefaultPage";
+		}
+		
+		
+		Cart cart=new Cart();
+		//cartLineDao.deletCartforTheCheckout(this.getCart().getId());
+		addressDAO.add(maddress);
+		//cartLineDao.deletCartforTheCheckout(5/*this.getCart().getId()*/);
+		model.addAttribute("UserClicksReceipt",true);
+		model.addAttribute("title", "Receipt");
+		model.addAttribute("message","Your Reciept is generated :) ");
+		model.addAttribute("Address", maddress);
+		return "DefaultPage";
+	}
 	@RequestMapping(value = { "/login" }) // provides url pattern for specific
 											// page as given below
 

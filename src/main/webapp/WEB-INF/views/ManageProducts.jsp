@@ -111,7 +111,7 @@ itemValue="id"
 
 <!-- submit button -->
 <div class="col-md-offset-4 col-md-4">
-<input type="submit" class="btn btn-primary" value="Submit" id="submit" name="submit"/>
+<input type="submit" class="btn btn-primary" value="Add Product" id="submit" name="submit"/>
 <!-- hidden fields -->
 <sf:hidden path="id"/>
 <sf:hidden path="code"/>

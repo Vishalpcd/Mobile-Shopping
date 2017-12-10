@@ -10,13 +10,14 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<!-- before adding this package frontend project cannot find the package 
-		of backend thats why it is showing the exception -->
+		of backend thats why it was showing the exception -->
 	<context:component-scan base-package="com.niit.MobileShoppingBackend" />
 	<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	<http pattern="/resources/**" security="none" />
 	<http>
-		<intercept-url pattern="/Manage/**" access="hasAuthority('ADMIN')"/>
+		<intercept-url pattern="/Manage/**" access="hasAuthority('ADMIN')"/><!-- access="ROLE_ADMIN"  can be used at the place of hasAuthority('ADMIN')-->
 		<intercept-url pattern="/edit/**" access="hasAuthority('ADMIN')"/>
+		<intercept-url pattern="/Address" access="hasAuthority('USER')"/>
 		<intercept-url pattern="/cart" access="hasAuthority('USER')"/>
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/login"/>

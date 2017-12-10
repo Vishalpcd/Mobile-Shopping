@@ -1,3 +1,19 @@
+ function PassWordMatch()
+{
+	var password1=document.getElementById("ps1");
+	var password2=document.getElementById("ps2");
+	if(password1.value!=password2.value)
+		{
+			alert("password do not match !!!");
+			return false;
+			
+		}
+	else
+		{
+			return true;
+		}
+}
+
 $(function() {
 	switch(menu)
 	{
@@ -303,7 +319,8 @@ $(function() {
 	});
 
 }
-	
+
+
 
 
 
@@ -311,4 +328,9 @@ $(function() {
 		
 	
 });
+
+
+
+
+
 
